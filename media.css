@@ -1,0 +1,53 @@
+/* -----------------FOR HOME PAGE----------------- */
+/* Base styles assumed to be defined in navbar.css, index.css, underline.css */
+
+/* --------------------------------------------- */
+/* ========== MEDIA QUERIES FOR RESPONSIVE DESIGN ========== */
+
+/* Mobile Phones (max-width: 600px) */
+@media (max-width: 600px) {
+    .subscribe-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+  
+    .subscribe-item {
+      width: 90%;
+      text-align: center;
+    }
+  
+    .subscribe-item h1 {
+      font-size: 28px;
+    }
+  
+    .subscribe-item p {
+      font-size: 16px;
+    }
+  
+    .subscribe-item a {
+      font-size: 18px;
+    }
+  }
+  
+  /* Tablets (max-width: 900px) */
+  @media (max-width: 900px) {
+    .subscribe-container {
+      flex-direction: column;
+      gap: 30px;
+    }
+  
+    .subscribe-item {
+      width: 80%;
+    }
+  
+    .subscribe-item h1 {
+      font-size: 32px;
+    }
+  
+    .subscribe-item p {
+      font-size: 18px;
+    }
+  }
+  
+/* --------------------------------------------- */  

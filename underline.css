@@ -1,0 +1,33 @@
+.underline-animation {
+    position: relative;
+    display: inline-block;
+    color: white;
+  }
+  
+  /* Underline setup */
+  .underline-animation::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -5px;
+    background-color: aliceblue;
+    transition: width 0.5s ease-in-out;
+  }
+  
+  /* Trigger underline animation */
+  .scroll-fade.visible.underline-animation::after {
+    width: 100%;
+  }
+  
+  /* Fade + slide in effect */
+  .scroll-fade {
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+  
+  .scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }

@@ -1,0 +1,27 @@
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Changing the text inside the hero image */
+.hero-content{
+    color:white;
+    font-size: 35px;
+    padding-left: 30px;
+    width: 60%;
+    padding-top: 8.5%;
+}
+/* Hero Header */
+.hero-header {
+    /* Use "linear-gradient" to add a darken background effect to the image. This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("Images/ImpactStoriesPlaceholder.jpg");
+
+  /* Set a specific height */
+  width: 100%;
+  height: 450px;
+
+  /* Position and center the image to scale nicely on all screens */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
