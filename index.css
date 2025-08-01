@@ -290,43 +290,104 @@ body {
 
 /* ----------------------------------THIRD SECTION---------------------------------------- */
 
-/*START OF FLEXBOX*/
-.statement-section{
+/* --- Statement Section: A Flexible, Responsive Grid --- */
+.statement-section {
   background-color: #6495ED;
-  padding: 10px 30px;
+  padding: 40px 30px; /* Increased padding for better top/bottom spacing */
 }
 
 .statement-container {
   display: flex;
-  gap: 40px;
-  justify-content: space-around;
+  flex-wrap: wrap; /* NEW: This is key! It allows items to wrap to a new line on smaller screens. */
+  justify-content: space-around; /* Distributes items with space around them, which looks more balanced than 'center' when items wrap. */
+  gap: 40px; /* Space between the items */
   padding: 30px;
+  max-width: 1200px; /* NEW: Prevents the container from becoming too wide on large monitors. */
+  margin: 0 auto; /* NEW: Centers the container on the page. */
+  box-sizing: border-box; /* Ensures padding is included in the element's total width. */
 }
 
-/* STATEMENT TEXT ALL GROUP */
-.statement-item{
+/* --- Statement Items: The Individual Boxes --- */
+.statement-item {
   padding: 10px;
-  width: 35%;
-  border-right: 1.5px solid #ADD9F4;
+  /* NEW: Replaces `width: 35%`. This is a much more powerful and responsive approach. */
+  flex: 1 1 300px; /* flex-grow | flex-shrink | flex-basis */
+                    /* 1: The item can grow to fill extra space. */
+                    /* 1: The item can shrink to prevent overflow. */
+                    /* 300px: The item's ideal width before it starts growing or shrinking. */
+  max-width: 350px; /* NEW: Prevents items from getting too wide on large screens. */
+  border-right: 1.5px solid #ADD9F4; /* Adds a vertical divider. */
+  box-sizing: border-box;
 }
 
+/* Special rule to remove the border from the last item in the *list*. */
 .statement-item:last-child {
-  border-right: none; /* Remove border from the last item */
+  border-right: none;
 }
 
-.statement-item h2{
-  color:white;
+/* --- Statement Item Typography --- */
+.statement-item h2 {
+  color: white;
+  font-size: 28px;
+  margin-bottom: 10px;
 }
-/* STATEMENT PARAGRAPH TEXT */
-.statement-item p{
+
+.statement-item p {
   margin: 0;
-  line-height: 1.4;
-  color: #CAF0F8; 
+  line-height: 1.6; /* Increased for better readability. */
+  color: #CAF0F8;
   font-size: 18px;
+  /* REMOVED: `width: fit-content(100%)`. This is unnecessary and can cause issues with flexible layouts. */
 }
 
-.statement-item a{
-  width: 10%
+/* This rule is likely not doing what you expect. If it's a button,
+   it needs more styling. If it's a text link, `width: 10%` will make it tiny. */
+.statement-item a {
+  /* width: 10%; */
+  display: inline-block;
+  margin-top: 15px;
+}
+
+/* --- Responsive Adjustments: Stacking for Tablets & Mobile --- */
+@media (max-width: 768px) {
+  .statement-container {
+    flex-direction: column; /* NEW: Stacks items vertically instead of side-by-side. */
+    align-items: center; /* NEW: Centers the stacked items horizontally. */
+    padding: 20px;
+    gap: 20px; /* Reduced gap when items are stacked. */
+  }
+
+  .statement-item {
+    flex-basis: 100%; /* NEW: Each item now takes up the full width of the container. */
+    max-width: 400px; /* NEW: Limits the width on larger tablet screens for better readability. */
+    padding: 20px;
+    border-right: none; /* NEW: Removes the vertical border when stacked. */
+    border-bottom: 1.5px solid #ADD9F4; /* NEW: Adds a horizontal border for separation. */
+  }
+
+  /* Removes the horizontal border from the very last item in the list. */
+  .statement-item:last-child {
+    border-bottom: none;
+  }
+}
+
+/* --- Responsive Adjustments: For Small Mobile Screens --- */
+@media (max-width: 480px) {
+  .statement-section {
+    padding: 20px 15px; /* Adjust padding for a tighter mobile layout. */
+  }
+  .statement-container {
+    padding: 15px;
+  }
+  .statement-item {
+    padding: 15px;
+  }
+  .statement-item h2 {
+    font-size: 22px;
+  }
+  .statement-item p {
+    font-size: 15px;
+  }
 }
 /* --------------------------------------------------------------------------------------- */
 /* ----------------------------------NUMBERS/STATS SECTION---------------------------------------- */
@@ -337,15 +398,25 @@ body {
 
 .numbers-container {
   display: flex;
-  justify-content: center; /* Center the whole row */
+  flex-wrap: wrap; /* NEW: Allows items to wrap to the next line if there's not enough space */
+  justify-content: center; /* Centers the whole row (or rows if wrapped) */
   gap: 50px; /* Space between the items */
   padding: 30px;
-  margin: auto;
+  max-width: 1200px; /* NEW: Set a maximum width for the container */
+  margin: 0 auto; /* NEW: Center the container on the page */
   text-align: left;
+  /* REMOVED: width: fit-content(100vw); - This can be unpredictable for responsive layouts */
 }
 
 .numbers-item {
-  max-width: 250px; /* Optional, keeps them from getting too wide */
+  /* Use flex-basis for initial sizing and allow shrinking */
+  flex: 1 1 250px; /* NEW: flex-grow | flex-shrink | flex-basis */
+                    /* 1: Allows items to grow if there's extra space */
+                    /* 1: Allows items to shrink if there's not enough space */
+                    /* 250px: Sets an ideal width for each item before growing/shrinking */
+  max-width: 300px; /* Adjust this value. It's the maximum width an item can take.
+                       Keep it higher than flex-basis if you want items to grow on large screens. */
+  text-align: center; /* Center the text within each number item for better visual balance */
 }
 
 .numbers-item h1 {
@@ -354,7 +425,7 @@ body {
   margin: 0;
 }
 
-.numbers-item h3{
+.numbers-item h3 {
   color: white;
   font-size: 36px;
 }
@@ -362,10 +433,53 @@ body {
 .numbers-item p {
   color: #CAF0F8;
   width: 100%; /* Make sure it fills its container */
-  margin: 10px 0 0 0;
+  margin: 10px auto 0 auto; /* Center paragraph if item is wider */
   font-weight: 200;
   font-size: 18px;
   line-height: 1.4;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .numbers-container {
+    padding: 20px;
+    gap: 30px; /* Slightly smaller gap on smaller screens */
+  }
+
+  .numbers-item {
+    flex-basis: calc(50% - 15px); /* Allows two items per row with gap (approx) */
+    max-width: calc(50% - 15px);
+  }
+
+  .numbers-item h1 {
+    font-size: 80px; /* Smaller font size for numbers */
+  }
+
+  .numbers-item h3 {
+    font-size: 28px; /* Smaller font size for headings */
+  }
+}
+
+@media (max-width: 480px) {
+  .numbers-container {
+    flex-direction: column; /* Stack items vertically on very small screens */
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .numbers-item {
+    flex-basis: 100%; /* Each item takes full width */
+    max-width: 100%; /* Ensure it doesn't exceed 100% */
+    padding: 15px; /* Adjust padding for smaller items */
+  }
+
+  .numbers-item h1 {
+    font-size: 60px; /* Even smaller font size for numbers */
+  }
+
+  .numbers-item h3 {
+    font-size: 24px; /* Even smaller font size for headings */
+  }
 }
 /* -------------------------------------------------------------------------------------------------- */
 
