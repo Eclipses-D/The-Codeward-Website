@@ -43,7 +43,18 @@ body {
   padding: 10px 30px;
   overflow: hidden; /* Prevent scrolling */
 }
-
+@media(max-width :900px){
+  .Hero-Header {
+    height: 400px; /* Reduced height for smaller screens */
+  }
+}
+@media (max-width: 768px) {
+  .hero-gif-container {
+    width: 100%; /* Full width on smaller screens */
+    font-size: 50px; /* Smaller font size for mobile */
+    padding: 20px; /* Adjust padding for smaller screens */
+  }
+}
   /* ---------------------------------FIRST SECTION-------------------------------------- */
 /* INTRO SECTION WILL HAVE COLOR & PADDING FOR TEXT */
 .intro-section{
@@ -666,47 +677,88 @@ body {
 /* --------------------------------------------------------------------------------------------------------- */
 
 /* ----------------------------------QUOTE SECTION------------------------------------ */
+/* --- Quote Section --- */
 .quote-section {
-  background-color: #468FEA; /* Same background color as the encourage section */
-  padding: 10px 30px; /* Consistent padding */
+  background-color: #468FEA;
+  padding: 40px 30px;
 }
 
-.quote-container{
+.quote-container {
   display: flex;
-  padding: 30px;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center; /* Ensures the image and text are vertically aligned */
   gap: 40px;
-  border: 5px solid #ffffff; /* Optional border for visual separation */
-}
-
-.quote-item{
-  width: 40%;
   padding: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  border: 5px solid #ffffff;
 }
 
+/* --- Quote Text & Image Items --- */
+.quote-item {
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.quote-item.quote-text {
+  flex: 1 1 550px; /* Increased base width for text to make it wider */
+  max-width: 65%; /* Increased max-width for text on larger screens */
+}
+
+.quote-item.quote-image {
+  flex: 1 1 400px; /* Adjusted base width for the image to allow for a wider text box */
+  max-width: 45%; /* Adjusted max-width for the image */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.quote-item.quote-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Typography --- */
 .quote-item h1 {
   color: white;
   margin-bottom: 10px;
+  font-size: 28px;
+  line-height: 1.6; /* Increased line-height for more space between lines */
 }
 
 .quote-item h2 {
   color: #ffffff;
   margin-top: 15.5px;
-  line-height: 1.4;
+  line-height: 1.5; /* Increased line-height here as well for consistency */
   font-size: 22px;
 }
 
-.quote-item.quote-image{
-  width: 60%;
-  height: auto;
-  display: flex;
+@media (max-width: 992px) {
+  .quote-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .quote-item.quote-text,
+  .quote-item.quote-image {
+    flex: 1 1 100%;
+    max-width: 80%;
+    text-align: center;
   }
 
   .quote-item.quote-image img {
-    width: 100%;
-    height: auto;
-    display: block;
+    max-width: 100%;
   }
+}
+
+@media (max-width: 576px) {
+  .quote-item.quote-text,
+  .quote-item.quote-image {
+    max-width: 95%;
+  }
+}
 /* --------------------------------------------------------------------------------------------------------- */
 
 .button-link {
